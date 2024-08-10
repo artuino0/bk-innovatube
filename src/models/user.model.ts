@@ -4,20 +4,25 @@ const UserSchema = new Schema(
   {
     name: {
       type: String,
-      required: [true, "The name is required"],
+      required: [true, "El nombre es obligatorio"],
     },
     lastname: {
       type: String,
-      required: [true, "The name is required"],
+      required: [true, "El apellido es obligatorio"],
+    },
+    username: {
+      type: String,
+      required: [true, "El nombre de usuario es obligatorio"],
+      unique: true,
     },
     email: {
       type: String,
-      required: [true, "The email is required"],
+      required: [true, "El correo electrónico es obligatorio"],
       unique: true,
     },
     password: {
       type: String,
-      required: [true, "The password is required"],
+      required: [true, "La contraseña es obligatoria"],
     },
     active: {
       type: Boolean,

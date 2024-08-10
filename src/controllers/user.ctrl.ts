@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import bcrypt from "bcrypt";
 import { UserModel } from "../models/user.model";
+import { userValidator } from "../validators/user.validator";
 
 export const getUsers = async (req: Request, res: Response) => {
   const users = await UserModel.find().populate({
@@ -24,7 +25,7 @@ export const getUser = async (req: Request, res: Response) => {
 };
 
 export const createUser = (req: Request, res: Response) => {
-  const { name, email, password, phone, temporaryPass } = req.body;
+  const { name, lastname, username, email, password } = req.body;
 
   let uid = req.body.uid;
 
@@ -38,11 +39,11 @@ export const createUser = (req: Request, res: Response) => {
 
   const user = new UserModel({
     name,
+    lastname,
     email,
+    username,
     password: hashPassword,
     createdBy: uid,
-    phone,
-    temporaryPass,
   });
   user
     .save()
